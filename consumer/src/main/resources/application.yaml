@@ -1,0 +1,20 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: consumer
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    listener:
+      concurrency: 1
+    consumer:
+      group-id: sample-consumer
+      bootstrap-servers: ${spring.kafka.bootstrap-servers}
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      auto-offset-reset: earliest
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
